@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+	
+	
+	$( document ).ready(function() 
+	{
+        
+		$("#boton1").click(function()
+		{
+			$("#caja_saludo").val( "Hola :  " +  $("#caja_nombre").val()  + " " +   $("#caja_apellido").val()   );
+			
+			$("#caja_despedida").html( "Adios :  <b>" +  $("#caja_apellido").val()  + "</b> <i style='color:red;' >" +   $("#caja_nombre").val()  + " </i> "   );
+			
+		});
+		
+		
+		$("#boton2").click(function()
+		{
+			$("#caja_nombre").val("");
+			$("#caja_apellido").val("");			
+		});
+		
+		
+		
+    });
+	
+	</script>
+   </head>
+<body>
+
+Nombre: <input type="text" id="caja_nombre" value="Andres"> </input><br>
+Apellido: <input type="text" id="caja_apellido" value="Herrera"></input><br><br>
+
+<button id="boton1" >Saludar Nombre y Apellido</button>
+
+
+<button id="boton2" style='color:red;background-color:gray;' >Borrar Cajas</button>
+
+<br><br>
+
+<input type="text" id="caja_saludo"></input>
+<br><br>
+<div id="caja_despedida"> </div>
+
+
+
+  
+</body>
+</html>   

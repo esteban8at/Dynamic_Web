@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+	
+	
+	$( document ).ready(function() 
+	{
+       
+		$("#boton_calcular").click(function()
+		{
+			$.post("procesa_ejemplo9.php",
+			{
+				lat_g: $("#lat_g").val(),
+				lat_m: $("#lat_m").val(),
+				lat_s: $("#lat_s").val(),
+				lat_hemis: $( "#lat_hemis option:selected" ).text() ,
+				lon_g: $("#lon_g").val(),
+				lon_m: $("#lon_m").val(),
+				lon_s: $("#lon_s").val(),
+				lon_hemis: $( "#lon_hemis option:selected" ).text() 
+			},
+			function(data, status){
+				console.log("Datos recibidos: " + data + "\nStatus: " + status);
+				if(status=='success')
+				{
+					$("#caja_resultado").html( data );
+				}
+			});
+			
+		});
+		
+		
+    });
+	
+	</script>
+   </head>
+<body>
+
+
+Latitud: <input type="text" id="lat_g" value="3"> </input>dd
+<input type="text" id="lat_m" value="25"> </input>mm
+<input type="text" id="lat_s" value="12.6"> </input>ss
+
+<select id="lat_hemis">
+ <option value="N">N</option>
+ <option value="S">S</option>
+</select>
+
+<br>
+Longitud: <input type="text" id="lon_g" value="76"></input>dd
+<input type="text" id="lon_m" value="32"> </input>mm
+<input type="text" id="lon_s" value="29.39"> </input>ss
+
+<select id="lon_hemis">
+<option value="W">W</option>
+<option value="E">E</option>
+</select>
+
+
+<br><br>
+
+<button id="boton_calcular"> Calcular Coordenadas</button> <br> <br>
+
+<br><br>
+
+<div id="caja_resultado"> </div>
+
+
+
+
+
+  
+</body>
+</html>   
+
+

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+	
+	
+	$( document ).ready(function() 
+	{
+        
+		$("#lista_seleccion").change(function()
+		{
+			var opcion_seleccionada = $( "#lista_seleccion :selected" ).val(); 
+			
+			$("#caja_mensaje").html( "<i style='color:red;' > "+opcion_seleccionada +" </i> " +  "<b> " +  $("#caja_nombre").val()  + "</b> " +   $("#caja_apellido").val() );
+			
+		});
+		
+		
+		$("#boton2").click(function()
+		{
+			$("#caja_nombre").val("");
+			$("#caja_apellido").val("");			
+		});
+		
+		
+		$("#boton3").click(function()
+		{
+			console.log( 'Valor Seleccionado (opciones) : ' + $( "#lista_seleccion" ).val() );
+			console.log( 'Texto Seleccionado (opciones): ' + $( "#lista_seleccion option:selected" ).text() );	 	
+		});
+		
+		
+		$("#boton4").click(function()
+		{
+			var gatico = $( "#lista_seleccion :selected" ).val(); 
+
+			$.post("procesa_ejemplo7.php",
+			{
+				opcion_capturada: gatico,
+				ciudad_capturada: "Cali"
+			},
+			function(data, status){
+				console.log("Datos recibidos: " + data + "\nStatus: " + status);
+				if(status=='success')
+				{
+					$("#caja_mensaje_2").html( "<i style='color:red;' > "+ data +" </i> " +  "<b> " +  $("#caja_nombre").val()  + "</b> " +   $("#caja_apellido").val() );;
+				}
+			});
+			
+		});
+		
+		
+    });
+	
+	</script>
+   </head>
+<body>
+
+
+		
+		
+
+Nombre: <input type="text" id="caja_nombre" value="Andres"> </input><br>
+Apellido: <input type="text" id="caja_apellido" value="Herrera"></input><br><br>
+
+<select id="lista_seleccion">
+ <option value="1">Mañana (ES)</option>
+ <option value="2">Tarde (ES)</option>
+ <option value="3">Noche (ES)</option>
+ <option value="4">Mañana (EN)</option>
+ <option value="5">Tarde (EN)</option>
+ <option value="6">Noche (EN)</option>
+</select>
+
+<br><br>
+
+<button id="boton2" style='color:red;background-color:gray;' >Borrar Cajas</button>
+<button id="boton3"> Ver opcion seleccionada (depuracion)</button> <br> <br>
+<button id="boton4"> Saludar </button> <br>
+
+<br><br>
+
+<div id="caja_mensaje"> </div>
+
+<div id="caja_mensaje_2"> </div>
+
+
+
+  
+</body>
+</html>   
